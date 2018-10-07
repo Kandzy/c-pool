@@ -4,7 +4,6 @@
 int main()
 {
 	GameLogic game;
-
 	game.gameStart();
 	return 0;
 }

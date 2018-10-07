@@ -2,9 +2,9 @@ NAME= ft_retro
 OBJ_DIR=./obj/
 SRC_DIR=./src/
 INC_DIR=./includes/
-SRC= main.cpp Ship.cpp Game.cpp Coord.cpp Meh.cpp Elem.cpp
+SRC= main.cpp SpaceShip.cpp GameLogic.cpp Parametrs.cpp GameScore.cpp Bullet.cpp
 OBJ=$(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
-INC= Ship.hpp Game.hpp Coord.hpp Meh.hpp Elem.hpp
+INC= SpaceShip.hpp GameLogic.hpp Parametrs.hpp GameScore.hpp Bullet.hpp
 CC= clang++
 FLAGS= -Wall -Wextra -Werror
 
