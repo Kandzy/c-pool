@@ -11,30 +11,40 @@
 
 template<typename T>
 class MutantStack : public std::stack<T>{
+	private:
+		typedef std::stack<T>					_mStack;
 	public:
-		MutantStack<T>() { return ; }
+		MutantStack<T>() : _mStack() { return ; }
 
-		MutantStack<T>(MutantStack<T> const &stack) : _stackList(stack._stackList) { return ; }
-
-		MutantStack<T> &operator=(MutantStack<T> const &stack)
-		{
-			this->_stackList = stack._stackList;
-			return (*this);
-		}
+		MutantStack<T>(MutantStack<T> const &stack) : _mStack(stack) { return ; }
+		using _mStack::operator=;
 
 		~MutantStack<T>(void) { return ; }
+		
+		typedef typename _mStack::container_type::iterator iterator;
 
-		typedef std::list<int>::iterator iterator;
+		T			top(void)  {
+			try {
+				if (this->_mStack::empty())
+				{
+					throw std::logic_error("\033[;31mException: Stack is empty! Return value: -1\033[;0m");
+				}
+				else
+				{
+					return (this->_mStack::top()); 
+				}
+			} catch (std::logic_error ex)
+			{
+				std::cout << ex.what() << std::endl;
+			}
+			return -1;
+		}
 
-		T			top(void) const { return (this->_stackList.front()); }
-		bool		empty(void) const { return (this->_stackList.empty()); }
-		int			size(void) const { return (this->_stackList.size()); }
-		void		push(T const &val) { this->_stackList.push_front(val); }
 		void		pop() {
 			try{
-				if (!this->empty())
+				if (!this->_mStack::empty())
 				{
-					this->_stackList.pop_front();
+					this->_mStack::pop();
 				}
 				else{
 					throw std::logic_error("\033[;31mException: Stack is empty!\033[;0m");
@@ -44,11 +54,9 @@ class MutantStack : public std::stack<T>{
 				std::cout<< ex.what() << std::endl;
 			}
 		}
-		iterator 	begin() { return (this->_stackList.begin()); }
-		iterator	end() { return (this->_stackList.end()); }
-		
-	private:
-		std::list<T>	_stackList;
+
+		iterator	begin(){ return (this->_mStack::c.begin()); }
+		iterator	end() { return (this->_mStack::c.end()); }
 };
 
 #endif

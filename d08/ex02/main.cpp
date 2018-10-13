@@ -7,6 +7,7 @@ int		main()
 {
 	MutantStack<int> st;
 	std::cout << "size: " << st.size() << std::endl;
+	// st.push(2);
 	std::cout << "empty?: " << st.empty() << std::endl;
 	std::cout << st.top() << std::endl;
 	st.pop();
@@ -54,5 +55,6 @@ int		main()
 	}
 	std::cout << "size: " << mstack.size() << std::endl;
 	std::stack<int> s(mstack);
+	std::cout << s.size() << std::endl;
 	return (0);
 }
